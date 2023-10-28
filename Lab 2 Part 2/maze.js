@@ -6,11 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const maze = document.getElementById("maze");
     const point = document.getElementById("point");
     var onPlay = false;
+    var losestat = false;
 
     //exercise 1
     walls.forEach((wallOnly) => {
         wallOnly.addEventListener("mouseover", function () {
             wallOnly.style.backgroundColor = 'red';
+            losestat = true;
         });
     });
 
@@ -19,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
         wallAll.addEventListener("mouseover", function () {
             walls.forEach((wall) => {
                 wall.style.backgroundColor = 'red';
+                losestat = true;
             })
         })
     })
@@ -34,11 +37,16 @@ document.addEventListener("DOMContentLoaded", function () {
             wall.style.backgroundColor = '#eeeeee';
         })
         onPlay = true;
+        losestat = false;
     })
 
     //exercise 6
     winElement.addEventListener("mouseover", function () {
-        status.innerHTML = "You Win!"
+        if (losestat) {
+            status.innerHTML = "You already lost"
+        } else {
+            status.innerHTML = "You Win!"
+        }
     })
 
     walls.forEach((wallAll) => {
@@ -46,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
             walls.forEach((wall) => {
                 wall.style.backgroundColor = 'red';
                 status.innerHTML = "You Lose"
+                losestat = true;
             })
         })
     })
@@ -58,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 walls.forEach((wall) => {
                     wall.style.backgroundColor = 'red';
                     status.innerHTML = "You Lose"
+                    losestat = true;
                 })
             }
         }
