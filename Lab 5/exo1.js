@@ -16,6 +16,8 @@ const ClickMeComponent = () => {
   );
 };
 
+ReactDOM.render(<ClickMeComponent />, document.getElementById('root'));
+
 // 2.
 
 // 3.
